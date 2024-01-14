@@ -25,11 +25,11 @@ const BookList: FC<BookListProps> = ({ books }) => {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-[24px] h-[70vh] overflow-y-auto  justify-center">
+        <ul className="flex flex-wrap gap-[24px] h-[70vh] overflow-y-auto justify-center">
           {booksState.map((book) => (
-            <BookItem key={book.title} book={book} setViewed={setViewed} />
+            <BookItem key={book.id} book={book} setViewed={setViewed} />
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ interface BookPageProps {
 }
 
 const BookPage: FC<BookPageProps> = ({ book }) => {
-  const { img } = book;
+  const { img, author, rating } = book;
   return (
     <div className="w-[300px]">
       <div>
@@ -13,8 +13,8 @@ const BookPage: FC<BookPageProps> = ({ book }) => {
       </div>
       {/* <img src={book.cover} alt={book.title} /> */}
       <h1 className="bg-red-500">{book.title}</h1>
-      <p>{book.author}</p>
-      <p>{book.rating}</p>
+      <p>{author}</p>
+      <p>{rating}</p>
       {/* <p>Status: {book.status}</p> */}
       {/* Add more details as needed */}
     </div>
