@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-interface BookPageProps {
+interface Props {
   book: Book;
 }
 
-const BookPage: FC<BookPageProps> = ({ book }) => {
+const BookPage: FC<Props> = ({ book }) => {
   const { img, author, rating } = book;
   return (
     <div className="w-[300px]">

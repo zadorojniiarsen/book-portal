@@ -8,4 +8,6 @@ interface Book {
   viewed: boolean;
   img: any;
   id: number;
+  addedAt: Date;
+  [key: string]: string | number | boolean | Date | Review[];
 }
