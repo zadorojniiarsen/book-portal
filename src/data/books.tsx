@@ -30,7 +30,7 @@ const books: Book[] = [
     ],
     downloads: 100000,
     viewed: false,
-    img: '/images/bg-1.png',
+    img: '/images/bg-2.png',
     id: 1,
   },
   {
@@ -47,7 +47,7 @@ const books: Book[] = [
     ],
     downloads: 100000,
     viewed: false,
-    img: '/images/bg-1.png',
+    img: '/images/bg-3.png',
     id: 2,
   },
   {
@@ -64,7 +64,7 @@ const books: Book[] = [
     ],
     downloads: 100000,
     viewed: false,
-    img: '/images/bg-1.png',
+    img: '/images/bg-4.png',
     id: 3,
   },
   {
@@ -98,7 +98,7 @@ const books: Book[] = [
     ],
     downloads: 100000,
     viewed: false,
-    img: '/images/bg-1.png',
+    img: '/images/bg-2.png',
     id: 5,
   },
   {
@@ -115,7 +115,7 @@ const books: Book[] = [
     ],
     downloads: 100000,
     viewed: false,
-    img: '/images/bg-1.png',
+    img: '/images/bg-3.png',
     id: 6,
   },
   {
@@ -132,10 +132,9 @@ const books: Book[] = [
     ],
     downloads: 100000,
     viewed: false,
-    img: '/images/bg-1.png',
+    img: '/images/bg-4.png',
     id: 7
   },
-
 ];
 
 export default books;
