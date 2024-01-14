@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import BookItem from "./BookItem";
 
 interface BookListProps {
@@ -8,10 +8,30 @@ const BookList: FC<BookListProps> = ({ books }) => {
   const [booksState, setBooksState] = useState(books);
 
   const setViewed = (id: number) => {
-    setBooksState(() =>
-      booksState.map((b) => ({ ...b, viewed: b.id === id ? true : b.viewed }))
-    );
+    const updatedArray = booksState.map((b) => ({
+      viewed: b.id === id ? true : b.viewed,
+      id: b.id,
+    }));
+
+    localStorage.setItem("viewed-state", JSON.stringify(updatedArray));
   };
+
+  useEffect(() => {
+    const viewedState = localStorage.getItem("viewed-state");
+
+    if (viewedState) {
+      const parsedViewedState = JSON.parse(viewedState);
+
+      const mergedState = booksState.map((b) => ({
+        ...b,
+        viewed: parsedViewedState.find(
+          (item: { id: number }) => item.id === b.id
+        ).viewed,
+      }));
+
+      setBooksState(mergedState);
+    }
+  }, []);
 
   return (
     <div>
