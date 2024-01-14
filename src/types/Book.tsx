@@ -7,4 +7,5 @@ interface Book {
   downloads: number;
   viewed: boolean;
   img: any;
+  id: number;
 }

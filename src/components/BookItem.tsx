@@ -3,13 +3,14 @@ import { FC } from "react";
 
 interface BookItemProps {
   book: Book;
+  setViewed: (id: number) => void;
 }
 
-const BookItem: FC<BookItemProps> = ({ book }) => {
-  const { title, author, rating, img, viewed } = book;
+const BookItem: FC<BookItemProps> = ({ book, setViewed }) => {
+  const { title, author, rating, img, viewed, id } = book;
 
   return (
-    <div className="w-[190px] h-[335px]">
+    <div className="w-[190px] h-[335px]" onClick={() => setViewed(id)}>
       <div className="relative mb-2">
         <img className="w-full rounded-xl" src={img} alt={book.title} />
         <div className="absolute top-4 right-4">

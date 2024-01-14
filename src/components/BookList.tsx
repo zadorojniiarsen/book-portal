@@ -1,11 +1,18 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import BookItem from "./BookItem";
 
 interface BookListProps {
   books: Book[];
 }
-
 const BookList: FC<BookListProps> = ({ books }) => {
+  const [booksState, setBooksState] = useState(books);
+
+  const setViewed = (id: number) => {
+    setBooksState(() =>
+      booksState.map((b) => ({ ...b, viewed: b.id === id ? true : b.viewed }))
+    );
+  };
+
   return (
     <div>
       <div className="px-[32px]">
@@ -19,8 +26,8 @@ const BookList: FC<BookListProps> = ({ books }) => {
         </div>
 
         <div className="flex flex-wrap gap-[24px] h-[70vh] overflow-y-auto  justify-center">
-          {books.map((book, index) => (
-            <BookItem key={index} book={book} />
+          {booksState.map((book) => (
+            <BookItem key={book.title} book={book} setViewed={setViewed} />
           ))}
         </div>
       </div>

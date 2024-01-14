@@ -12,8 +12,9 @@ const books: Book[] = [
       },
     ],
     downloads: 100000,
-    viewed: true,
+    viewed: false,
     img: '/images/bg-1.png',
+    id: 0,
   },
   {
     title: "Harry Potter",
@@ -28,8 +29,9 @@ const books: Book[] = [
       },
     ],
     downloads: 100000,
-    viewed: true,
+    viewed: false,
     img: '/images/bg-1.png',
+    id: 1,
   },
   {
     title: "Harry Potter",
@@ -44,8 +46,9 @@ const books: Book[] = [
       },
     ],
     downloads: 100000,
-    viewed: true,
+    viewed: false,
     img: '/images/bg-1.png',
+    id: 2,
   },
   {
     title: "Harry Potter",
@@ -60,8 +63,9 @@ const books: Book[] = [
       },
     ],
     downloads: 100000,
-    viewed: true,
+    viewed: false,
     img: '/images/bg-1.png',
+    id: 3,
   },
   {
     title: "Harry Potter",
@@ -76,8 +80,9 @@ const books: Book[] = [
       },
     ],
     downloads: 100000,
-    viewed: true,
+    viewed: false,
     img: '/images/bg-1.png',
+    id: 4,
   },
   {
     title: "Harry Potter",
@@ -92,8 +97,9 @@ const books: Book[] = [
       },
     ],
     downloads: 100000,
-    viewed: true,
+    viewed: false,
     img: '/images/bg-1.png',
+    id: 5,
   },
   {
     title: "Harry Potter",
@@ -108,8 +114,9 @@ const books: Book[] = [
       },
     ],
     downloads: 100000,
-    viewed: true,
+    viewed: false,
     img: '/images/bg-1.png',
+    id: 6,
   },
   {
     title: "Harry Potter",
@@ -124,10 +131,11 @@ const books: Book[] = [
       },
     ],
     downloads: 100000,
-    viewed: true,
+    viewed: false,
     img: '/images/bg-1.png',
+    id: 7
   },
-  
+
 ];
 
 export default books;
