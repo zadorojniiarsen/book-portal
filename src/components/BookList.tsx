@@ -2,6 +2,7 @@ import { FC, useCallback, useEffect, useState } from "react";
 import BookItem from "./BookItem";
 import SortingComponent from "./SortingComponent";
 import { SortFunction, SortOptions, SortStrategy } from "@/types/SortValue";
+import Loading from "./Loading";
 
 interface Props {
   books: Book[];
@@ -30,8 +31,9 @@ const sortBooksByOption = (books: Book[], option: SortOptions): Book[] => {
 };
 
 const BookList: FC<Props> = ({ books }) => {
-  const [booksState, setBooksState] = useState<Book[]>(books);
+  const [booksState, setBooksState] = useState<Book[]>([]);
   const [sorting, setSorting] = useState<SortOptions>(defaultSortValues);
+  const [loading, setLoading] = useState(true);
 
   const sortValues = (value: SortOptions) => {
     setSorting(value);
@@ -39,6 +41,8 @@ const BookList: FC<Props> = ({ books }) => {
   };
 
   const setViewed = (id: number) => {
+    setLoading(true);
+    
     const updatedArray = booksState.map((b) => ({
       viewed: b.id === id || b.viewed,
       id: b.id,
@@ -55,7 +59,7 @@ const BookList: FC<Props> = ({ books }) => {
 
     const parsedViewedState: BookMinimal[] = JSON.parse(viewedState);
 
-    const mergedState = booksState.map((book) => ({
+    const mergedState = books.map((book) => ({
       ...book,
       viewed:
         parsedViewedState.find((storageItem) => storageItem.id === book.id)
@@ -63,11 +67,13 @@ const BookList: FC<Props> = ({ books }) => {
     }));
 
     setBooksState(sortBooksByOption(mergedState, sorting));
+
+    setLoading(false);
   }, []);
 
   return (
     <div>
-      <div className="px-[32px]">
+      <div className="mx-[32px] mb-2">
         <div className="flex justify-between px-[12px] py-[24px]">
           <h2>{books.length} Books</h2>
 
@@ -76,10 +82,12 @@ const BookList: FC<Props> = ({ books }) => {
 
         <ul className="flex flex-wrap gap-[24px] h-[70vh] overflow-y-auto mx-auto">
           {booksState.map((book) => (
-            <BookItem key={book.id} entries={book} setViewed={setViewed} />
+            <BookItem key={book.id} {...book} setViewed={setViewed} />
           ))}
         </ul>
       </div>
+
+      {loading && <Loading />}
     </div>
   );
 };

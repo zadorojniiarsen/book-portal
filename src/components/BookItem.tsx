@@ -2,13 +2,18 @@ import { UNVIEWED_SVG, VIEWED_SVG } from "@/svg";
 import Link from "next/link";
 import { FC } from "react";
 
-interface Props {
-  entries: Book;
+interface Props extends Book {
+  // entries: Book;
   setViewed: (id: number) => void;
 }
 
 const BookItem: FC<Props> = ({
-  entries: { title, author, rating, img, viewed, id },
+  title,
+  author,
+  rating,
+  img,
+  viewed,
+  id,
   setViewed,
 }) => (
   <Link
