@@ -1,6 +1,7 @@
 import { SORT_ARROWS_SVG } from "@/svg";
 import { SortOptions } from "@/types/SortValue";
 import { FC } from "react";
+import Dropdown from "./Dropdown";
 
 interface Props {
   value: SortOptions;
@@ -9,7 +10,7 @@ interface Props {
 
 const SortingComponent: FC<Props> = ({ value, setValue }) => {
   return (
-    <div className="w-[200px] flex gap-3">
+    <div className="flex w-max gap-3 items-center">
       <div
         className="cursor-pointer"
         onClick={() => setValue({ ...value, isAscending: !value.isAscending })}
@@ -19,7 +20,7 @@ const SortingComponent: FC<Props> = ({ value, setValue }) => {
 
       <span>Sort by</span>
 
-      <div>selector</div>
+      <Dropdown value={value} setValue={setValue} />
     </div>
   );
 };

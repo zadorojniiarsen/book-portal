@@ -3,7 +3,6 @@ import Link from "next/link";
 import { FC } from "react";
 
 interface Props extends Book {
-  // entries: Book;
   setViewed: (id: number) => void;
 }
 

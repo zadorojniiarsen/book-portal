@@ -3,6 +3,7 @@ import BookItem from "./BookItem";
 import SortingComponent from "./SortingComponent";
 import { SortFunction, SortOptions, SortStrategy } from "@/types/SortValue";
 import Loading from "./Loading";
+import Header from "../Header";
 
 interface Props {
   books: Book[];
@@ -55,7 +56,15 @@ const BookList: FC<Props> = ({ books }) => {
     // get viewed state from localStorage
     const viewedState = localStorage.getItem("viewed-state");
 
-    if (!viewedState) return;
+    if (!viewedState) {
+      const defaultData = books.map((b) => ({
+        viewed: b.viewed,
+        id: b.id,
+      }));
+      
+      localStorage.setItem("viewed-state", JSON.stringify(defaultData));
+      return;
+    }
 
     const parsedViewedState: BookMinimal[] = JSON.parse(viewedState);
 
@@ -73,8 +82,10 @@ const BookList: FC<Props> = ({ books }) => {
 
   return (
     <div>
+      <Header pageTitle={"Books Read This Month"} />
+
       <div className="mx-[32px] mb-2">
-        <div className="flex justify-between px-[12px] py-[24px]">
+        <div className="flex justify-between px-[12px] py-[24px] items-center">
           <h2>{books.length} Books</h2>
 
           <SortingComponent value={sorting} setValue={sortValues} />

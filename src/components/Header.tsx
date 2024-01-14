@@ -1,11 +1,20 @@
 import { FC } from "react";
+import Link from "next/link";
+import { BACK_ARROW_SVG } from "@/svg";
+("use-client");
 
-const Header: FC = () => {
-  return (
-    <h1 className="p-5 text-white text-18 font-semibold tracking-wide break-words border-b border-gray-600">
-      Books Read This Month
-    </h1>
-  );
+type Props = {
+  pageTitle?: string;
 };
+
+const Header: FC<Props> = ({ pageTitle }) => (
+  <h1 className="p-5 text-white text-18 font-semibold tracking-wide break-words border-b border-neutral-600">
+    {pageTitle ?? (
+      <Link href={"/"}>
+        <BACK_ARROW_SVG />
+      </Link>
+    )}
+  </h1>
+);
 
 export default Header;

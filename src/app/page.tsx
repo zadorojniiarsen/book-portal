@@ -1,5 +1,5 @@
 'use client'
-import BookList from "@/components/BookList";
+import BookList from "@/components/bookList";
 import books from "@/mock/books";
 
 export default function Home() {
