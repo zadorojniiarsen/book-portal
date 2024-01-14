@@ -3,12 +3,12 @@ import Link from "next/link";
 import { FC } from "react";
 
 interface Props {
-  book: Book;
+  entries: Book;
   setViewed: (id: number) => void;
 }
 
 const BookItem: FC<Props> = ({
-  book: { title, author, rating, img, viewed, id },
+  entries: { title, author, rating, img, viewed, id },
   setViewed,
 }) => (
   <Link

@@ -15,7 +15,6 @@ const books: Book[] = [
     viewed: false,
     img: '/images/bg-1.png',
     id: 0,
-    addedAt: new Date()
   },
   {
     title: "Harry Potter",
@@ -33,7 +32,6 @@ const books: Book[] = [
     viewed: false,
     img: '/images/bg-2.png',
     id: 1,
-    addedAt: new Date()
   },
   {
     title: "Harry Potter",
@@ -51,7 +49,6 @@ const books: Book[] = [
     viewed: false,
     img: '/images/bg-3.png',
     id: 2,
-    addedAt: new Date()
   },
   {
     title: "Harry Potter",
@@ -69,7 +66,6 @@ const books: Book[] = [
     viewed: false,
     img: '/images/bg-4.png',
     id: 3,
-    addedAt: new Date()
   },
   {
     title: "Harry Potter",
@@ -87,7 +83,6 @@ const books: Book[] = [
     viewed: false,
     img: '/images/bg-1.png',
     id: 4,
-    addedAt: new Date()
   },
   {
     title: "Harry Potter",
@@ -105,7 +100,6 @@ const books: Book[] = [
     viewed: false,
     img: '/images/bg-2.png',
     id: 5,
-    addedAt: new Date()
   },
   {
     title: "Harry Potter",
@@ -123,7 +117,6 @@ const books: Book[] = [
     viewed: false,
     img: '/images/bg-3.png',
     id: 6,
-    addedAt: new Date()
   },
   {
     title: "Harry Potter",
@@ -141,7 +134,6 @@ const books: Book[] = [
     viewed: false,
     img: '/images/bg-4.png',
     id: 7,
-    addedAt: new Date()
   },
 ];
 

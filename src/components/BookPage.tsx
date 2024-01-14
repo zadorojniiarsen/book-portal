@@ -6,6 +6,7 @@ interface Props {
 
 const BookPage: FC<Props> = ({ book }) => {
   const { img, author, rating } = book;
+  
   return (
     <div className="w-[300px]">
       <div>
