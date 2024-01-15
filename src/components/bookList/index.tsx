@@ -17,7 +17,7 @@ const sorters: Record<SortStrategy, SortFunction> = {
 };
 
 const defaultSortValues: SortOptions = {
-  sortBy: SortStrategy.Viewed,
+  sortBy: SortStrategy.Name,
   isAscending: true,
 };
 

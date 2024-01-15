@@ -1,19 +1,25 @@
 const books: Book[] = [
   {
-    title: "Harry Potter",
+    title: "Harry Potter and the Philosopher's Stone",
     author: "J.K Rowling",
     rating: 5,
-    description: "sadg",
+    description:
+      "For the first time in his life, Harry Potter learns that he is not an ordinary boy. He is a wizard, and his parents were wizards. At the age of eleven, Harry goes to Hogwarts School of Witchcraft and Wizardry, where he makes new friends, learns a lot about the wizarding world, and begins to fight evil.",
     reviews: [
       {
-        text: "adsf",
+        text: "I read this book when I was a child, and it changed my life. It taught me to believe in myself and my dreams.",
+        name: "Vlad",
+        age: 30,
+      },
+      {
+        text: "This is my all-time favorite book. It is magical, exciting, and inspiring.",
         name: "Maria",
         age: 25,
       },
     ],
     downloads: 100,
     viewed: false,
-    img: '/images/bg-1.png',
+    img: "/images/bg-1.png",
     id: 0,
   },
   {
@@ -30,7 +36,7 @@ const books: Book[] = [
     ],
     downloads: 10,
     viewed: false,
-    img: '/images/bg-2.png',
+    img: "/images/bg-2.png",
     id: 1,
   },
   {
@@ -40,14 +46,19 @@ const books: Book[] = [
     description: "sadg",
     reviews: [
       {
-        text: "adsf",
+        text: "I read this book when I was a child, and it changed my life. It taught me to believe in myself and my dreams.",
+        name: "Vlad",
+        age: 30,
+      },
+      {
+        text: "This is my all-time favorite book. It is magical, exciting, and inspiring.",
         name: "Maria",
         age: 25,
       },
     ],
     downloads: 0,
     viewed: false,
-    img: '/images/bg-3.png',
+    img: "/images/bg-3.png",
     id: 2,
   },
   {
@@ -64,7 +75,7 @@ const books: Book[] = [
     ],
     downloads: 50,
     viewed: false,
-    img: '/images/bg-4.png',
+    img: "/images/bg-4.png",
     id: 3,
   },
   {
@@ -81,7 +92,7 @@ const books: Book[] = [
     ],
     downloads: 30,
     viewed: false,
-    img: '/images/bg-1.png',
+    img: "/images/bg-1.png",
     id: 4,
   },
   {
@@ -98,7 +109,7 @@ const books: Book[] = [
     ],
     downloads: 500,
     viewed: false,
-    img: '/images/bg-2.png',
+    img: "/images/bg-2.png",
     id: 5,
   },
   {
@@ -108,14 +119,19 @@ const books: Book[] = [
     description: "sadg",
     reviews: [
       {
-        text: "adsf",
+        text: "I read this book when I was a child, and it changed my life. It taught me to believe in myself and my dreams.",
+        name: "Vlad",
+        age: 30,
+      },
+      {
+        text: "This is my all-time favorite book. It is magical, exciting, and inspiring.",
         name: "Maria",
         age: 25,
       },
     ],
     downloads: 1000,
     viewed: false,
-    img: '/images/bg-3.png',
+    img: "/images/bg-3.png",
     id: 6,
   },
   {
@@ -132,7 +148,7 @@ const books: Book[] = [
     ],
     downloads: 100000,
     viewed: false,
-    img: '/images/bg-4.png',
+    img: "/images/bg-4.png",
     id: 7,
   },
 ];

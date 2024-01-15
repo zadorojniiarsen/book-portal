@@ -20,7 +20,7 @@ const Dropdown: FC<Props> = ({ value, setValue }) => {
 
   return (
     <div className="relative" onClick={() => setIsExpanded(!isExpanded)}>
-      <div className="flex border-white border rounded-lg w-[135px] py-2 pl-3 pr-2 justify-between">
+      <div className="flex border-white border rounded-lg w-[135px] py-2 pl-3 pr-2 justify-between cursor-pointer">
         <div>{getKeyByValue(value.sortBy)}</div>
         <div className={`${isExpanded && "rotate-180"}`}>
           <DROPDOWN_ARROW_SVG />
@@ -28,7 +28,7 @@ const Dropdown: FC<Props> = ({ value, setValue }) => {
       </div>
 
       {isExpanded && (
-        <div className="absolute top-12 flex w-32 h-28 py-2 bg-stone-900 rounded-lg flex-col items-start z-10">
+        <div className="absolute top-12 flex w-[135px] py-2 bg-stone-900 rounded-lg flex-col items-start z-10">
           {strategies.map((strategy) => (
             <div
               className={`flex self-stretch h-8 pl-3 items-center gap-2.5 cursor-pointer ${

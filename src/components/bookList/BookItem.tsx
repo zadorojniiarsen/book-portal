@@ -21,16 +21,24 @@ const BookItem: FC<Props> = ({
       setViewed(id);
     }}
   >
-    <li className="w-[190px] h-[335px]">
+    <li className="w-[190px]">
       <div className="relative mb-2">
-        <img className="w-full rounded-xl" src={img} alt={title} />
+        <img
+          className="w-full rounded-xl transition-transform transform hover:scale-150"
+          src={img}
+          alt={title}
+        />
+        <div className="absolute inset-0 bg-purple-500 transition-opacity opacity-0 hover:opacity-30"></div>
         <div className="absolute top-4 right-4">
           {viewed ? <VIEWED_SVG /> : <UNVIEWED_SVG />}
         </div>
       </div>
-      <h3 className="font-semibold break-words">{title}</h3>
-      <p className="text-sm">{author}</p>
-      <p className="">{rating}/5</p>
+
+      <div className="relative h-[95px]">
+        <h3 className="font-semibold break-words">{title}</h3>
+        <p className="text-sm mb-5">{author}</p>
+        <p className="absolute bottom-0">{rating}/5</p>
+      </div>
     </li>
   </Link>
 );
