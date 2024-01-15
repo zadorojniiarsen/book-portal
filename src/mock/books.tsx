@@ -17,9 +17,9 @@ const books: Book[] = [
     id: 0,
   },
   {
-    title: "Harry Potter",
-    author: "J.K Rowling",
-    rating: 5,
+    title: "The Shining",
+    author: "Stephen King",
+    rating: 4,
     description: "sadg",
     reviews: [
       {
@@ -34,8 +34,8 @@ const books: Book[] = [
     id: 1,
   },
   {
-    title: "Harry Potter",
-    author: "J.K Rowling",
+    title: "The Lord of the Rings",
+    author: "J.R.R. Tolkien",
     rating: 5,
     description: "sadg",
     reviews: [
