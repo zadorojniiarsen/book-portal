@@ -79,7 +79,6 @@ const BookList: FC = () => {
 
       setBooksState(sortBooksByOption(mergedState, sorting));
 
-      setLoading(false);
     })();
   }, []);
 
@@ -87,14 +86,14 @@ const BookList: FC = () => {
     <div>
       <Header pageTitle={"Books Read This Month"} />
 
-      <div className="mx-[32px] mb-2">
-        <div className="flex justify-between px-[12px] py-[24px] items-center">
+      <div className="mb-2">
+        <div className="flex justify-between mx-[32px] px-[12px] py-[24px] items-center">
           <h2>{booksState.length} Books</h2>
 
           <SortingComponent value={sorting} setValue={sortValues} />
         </div>
 
-        <ul className="flex flex-wrap gap-[24px] h-[70vh] overflow-y-auto mx-auto">
+        <ul className="flex flex-wrap gap-[24px] h-[70vh] px-[32px] overflow-y-auto">
           {booksState.map((book) => (
             <BookItem key={book.id} {...book} setViewed={setViewed} />
           ))}
