@@ -5,6 +5,7 @@ export enum SortStrategy {
   Author = "author",
   Name = "title",
   Viewed = "viewed",
+  Year = "publishedDate",
 }
 
 export interface SortOptions {

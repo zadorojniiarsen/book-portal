@@ -1,32 +1,11 @@
 import { FC, useEffect, useState } from "react";
-import BookItem from "./BookItem";
-import SortingComponent from "./SortingComponent";
-import { SortFunction, SortOptions, SortStrategy } from "@/types/SortValue";
-import Loading from "./Loading";
-import Header from "../Header";
+import { SortOptions } from "@/types/SortValue";
 import GoogleApiClient from "@/services/GoogleApiClient";
-
-const sorters: Record<SortStrategy, SortFunction> = {
-  [SortStrategy.Author]: (a: string, b: string): number => a.localeCompare(b),
-  [SortStrategy.Name]: (a: string, b: string): number => a.localeCompare(b),
-  [SortStrategy.Viewed]: (a: boolean, b: boolean): number =>
-    b === a ? 0 : a ? -1 : 1,
-};
-
-const defaultSortValues: SortOptions = {
-  sortBy: SortStrategy.Name,
-  isAscending: true,
-};
-
-const sortBooksByOption = (books: Book[], option: SortOptions): Book[] => {
-  return books.toSorted((a: Book, b: Book): number => {
-    const first = (option.isAscending ? a : b)[option.sortBy] as never;
-    const second = (option.isAscending ? b : a)[option.sortBy] as never;
-    const sorter = sorters[option.sortBy] as SortFunction | undefined;
-
-    return sorter ? sorter(first, second) : 0;
-  });
-};
+import { defaultSortValues, sortBooksByOption } from "@/utils/bookListUtils";
+import SortingComponent from "./components/SortingComponent";
+import BookItem from "./components/BookItem";
+import Loading from "./components/Loading";
+import BooksSceleton from "./components/sceletons/BooksSceleton";
 
 const BookList: FC = () => {
   const [booksState, setBooksState] = useState<Book[]>([]);
@@ -57,7 +36,7 @@ const BookList: FC = () => {
       const viewedState = localStorage.getItem("viewed-state");
 
       if (!viewedState) {
-        const defaultData = books.filter(b => b.viewed).map((b) => b.id);
+        const defaultData = books.filter((b) => b.viewed).map((b) => b.id);
 
         localStorage.setItem("viewed-state", JSON.stringify(defaultData));
         return;
@@ -76,25 +55,27 @@ const BookList: FC = () => {
   }, []);
 
   return (
-    <div>
-      <Header pageTitle={"Books Read This Month"} />
-
+    <>
       <div className="mb-2">
-        <div className="flex justify-between mx-[32px] px-[12px] py-[24px] items-center">
+        <div className="flex flex-col gap-5 sm:flex-row sm:gap-0 justify-between md:mx-[32px] px-[12px] py-[24px] items-center">
           <h2>{booksState.length} Books</h2>
 
           <SortingComponent value={sorting} setValue={sortValues} />
         </div>
 
-        <ul className="flex flex-wrap justify-center gap-[24px] h-[70vh] px-[32px] overflow-y-auto">
-          {booksState.map((book) => (
-            <BookItem key={book.id} {...book} setViewed={setViewed} />
-          ))}
+        <ul className="flex flex-wrap justify-center gap-[24px] h-[70vh] px-[12px] mx-[20px] overflow-y-auto">
+          {booksState.length ? (
+            booksState.map((book) => (
+              <BookItem key={book.id} {...book} setViewed={setViewed} />
+            ))
+          ) : (
+            <BooksSceleton />
+          )}
         </ul>
       </div>
 
       {loading && <Loading />}
-    </div>
+    </>
   );
 };
 

@@ -22,7 +22,7 @@ const BookItem: FC<Props> = ({
     }}
   >
     <li className="w-[190px]">
-      <div className="relative w-[190px] h-[240px] mb-2 rounded-xl before:ease overflow-hidden shadow-lg transition-all before:absolute before:right-0 before:top-0 before:h-[300px] before:w-[100px] before:translate-x-[190px] before:rotate-6 before:bg-white before:opacity-10 hover:shadow-white hover:before:-translate-x-[240px]">
+      <div className="relative w-[190px] h-[240px] mb-2 rounded-xl before:ease overflow-hidden shadow-lg before:duration-300 transition-all before:absolute before:right-0 before:top-0 before:h-[300px] before:w-[200px] before:translate-x-[190px] before:rotate-6 before:bg-white before:opacity-10 hover:shadow-white hover:before:-translate-x-[240px]">
         <img
           className="rounded-xl w-[190px] h-[240px]"
           src={imageUrl}
