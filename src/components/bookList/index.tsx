@@ -41,11 +41,9 @@ const BookList: FC = () => {
   const setViewed = (id: string) => {
     setLoading(true);
 
-    const updatedArray = booksState.map((b) => ({
-      viewed: b.id === id || b.viewed,
-      id: b.id,
-    }));
-
+    const viewedState = localStorage.getItem("viewed-state") ?? "";
+    const parsedViewedState: string[] = JSON.parse(viewedState);
+    const updatedArray = viewedState ? [...parsedViewedState, id] : [];
     localStorage.setItem("viewed-state", JSON.stringify(updatedArray));
   };
 
