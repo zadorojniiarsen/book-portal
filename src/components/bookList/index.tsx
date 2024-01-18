@@ -1,16 +1,13 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import BookItem from "./BookItem";
 import SortingComponent from "./SortingComponent";
 import { SortFunction, SortOptions, SortStrategy } from "@/types/SortValue";
 import Loading from "./Loading";
 import Header from "../Header";
-
-interface Props {
-  books: Book[];
-}
+import GoogleApiClient from "@/services/GoogleApiClient";
 
 const sorters: Record<SortStrategy, SortFunction> = {
-  [SortStrategy.Popularity]: (a: number, b: number): number => b - a,
+  [SortStrategy.Author]: (a: string, b: string): number => a.localeCompare(b),
   [SortStrategy.Name]: (a: string, b: string): number => a.localeCompare(b),
   [SortStrategy.Viewed]: (a: boolean, b: boolean): number =>
     b === a ? 0 : a ? -1 : 1,
@@ -31,7 +28,7 @@ const sortBooksByOption = (books: Book[], option: SortOptions): Book[] => {
   });
 };
 
-const BookList: FC<Props> = ({ books }) => {
+const BookList: FC = () => {
   const [booksState, setBooksState] = useState<Book[]>([]);
   const [sorting, setSorting] = useState<SortOptions>(defaultSortValues);
   const [loading, setLoading] = useState(true);
@@ -41,9 +38,9 @@ const BookList: FC<Props> = ({ books }) => {
     setBooksState(sortBooksByOption(booksState, value));
   };
 
-  const setViewed = (id: number) => {
+  const setViewed = (id: string) => {
     setLoading(true);
-    
+
     const updatedArray = booksState.map((b) => ({
       viewed: b.id === id || b.viewed,
       id: b.id,
@@ -53,31 +50,37 @@ const BookList: FC<Props> = ({ books }) => {
   };
 
   useEffect(() => {
-    // get viewed state from localStorage
-    const viewedState = localStorage.getItem("viewed-state");
+    (async () => {
+      const apiClient = new GoogleApiClient();
 
-    if (!viewedState) {
-      const defaultData = books.map((b) => ({
-        viewed: b.viewed,
-        id: b.id,
+      const books = await apiClient.searchBooks();
+
+      // get viewed state from localStorage
+      const viewedState = localStorage.getItem("viewed-state");
+
+      if (!viewedState) {
+        const defaultData = books.map((b) => ({
+          viewed: b.viewed,
+          id: b.id,
+        }));
+
+        localStorage.setItem("viewed-state", JSON.stringify(defaultData));
+        return;
+      }
+
+      const parsedViewedState: BookMinimal[] = JSON.parse(viewedState);
+
+      const mergedState = books.map((book) => ({
+        ...book,
+        viewed:
+          parsedViewedState.find((storageItem) => storageItem.id === book.id)
+            ?.viewed ?? false,
       }));
-      
-      localStorage.setItem("viewed-state", JSON.stringify(defaultData));
-      return;
-    }
 
-    const parsedViewedState: BookMinimal[] = JSON.parse(viewedState);
+      setBooksState(sortBooksByOption(mergedState, sorting));
 
-    const mergedState = books.map((book) => ({
-      ...book,
-      viewed:
-        parsedViewedState.find((storageItem) => storageItem.id === book.id)
-          ?.viewed ?? false,
-    }));
-
-    setBooksState(sortBooksByOption(mergedState, sorting));
-
-    setLoading(false);
+      setLoading(false);
+    })();
   }, []);
 
   return (
@@ -86,7 +89,7 @@ const BookList: FC<Props> = ({ books }) => {
 
       <div className="mx-[32px] mb-2">
         <div className="flex justify-between px-[12px] py-[24px] items-center">
-          <h2>{books.length} Books</h2>
+          <h2>{booksState.length} Books</h2>
 
           <SortingComponent value={sorting} setValue={sortValues} />
         </div>

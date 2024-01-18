@@ -31,6 +31,7 @@ const Dropdown: FC<Props> = ({ value, setValue }) => {
         <div className="absolute top-12 flex w-[135px] py-2 bg-stone-900 rounded-lg flex-col items-start z-10">
           {strategies.map((strategy) => (
             <div
+              key={strategy}
               className={`flex self-stretch h-8 pl-3 items-center gap-2.5 cursor-pointer ${
                 value.sortBy === strategy
                   ? "text-white/60"

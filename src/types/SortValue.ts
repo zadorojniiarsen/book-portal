@@ -2,7 +2,7 @@ export type Sorter<T> = (a: T, b: T) => number;
 export type SortFunction = Sorter<string> | Sorter<boolean> | Sorter<number>;
 
 export enum SortStrategy {
-  Popularity = "downloads",
+  Author = "author",
   Name = "title",
   Viewed = "viewed",
 }

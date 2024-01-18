@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Header: FC<Props> = ({ pageTitle }) => (
-  <h1 className="p-5 text-white text-18 font-semibold tracking-wide break-words border-b border-neutral-600">
+  <h1 className="p-5 text-white text-18 font-semibold tracking-wide break-words border-b border-neutral-600 cursor-default">
     {pageTitle ?? (
       <Link href={"/"}>
         <BACK_ARROW_SVG />

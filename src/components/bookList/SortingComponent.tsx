@@ -18,7 +18,7 @@ const SortingComponent: FC<Props> = ({ value, setValue }) => {
         <SORT_ARROWS_SVG />
       </div>
 
-      <span>Sort by</span>
+      <span className="cursor-default">Sort by</span>
 
       <Dropdown value={value} setValue={setValue} />
     </div>

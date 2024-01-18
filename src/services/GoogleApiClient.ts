@@ -1,44 +1,50 @@
-import axios from 'axios';
+import {
+  bookArrayResponseMapper,
+  bookResponseMapper,
+} from "./bookResponseMapper";
 
 export default class GoogleApiClient {
-  private apiKey: string;
-  private apiUrl: string;
+  constructor(
+    private readonly apiKey: string = process.env.API_KEY ?? "",
+    private readonly apiUrl: string = process.env.API_URL ?? ""
+  ) {}
 
-  constructor() {
-    this.apiKey = process.env.API_KEY || '';
-    this.apiUrl = process.env.API_URL || '';
+  public async searchBooks(): Promise<Book[]> {
+    const queryParams = new URLSearchParams({
+      q: "a",
+      maxResults: "40",
+      key: this.apiKey,
+    });
+
+    const fullUrl = `${this.apiUrl}?${queryParams.toString()}`;
+
+    const response = await fetch(fullUrl);
+
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    const books: Book[] = bookArrayResponseMapper(data.items);
+
+    return books;
   }
 
-  public async searchBooks(query: string): Promise<void> {
-    const queryParams = {
-      q: query,
-      maxResults: 40,
+  public async searchBookById(id: string): Promise<Book> {
+    
+    const queryParams = new URLSearchParams({
       key: this.apiKey,
-    };
+    });
 
-    try {
-      const response = await axios.get(this.apiUrl, { params: queryParams });
-
-      if (response.status !== 200) {
-        throw new Error(`Network response was not ok: ${response.statusText}`);
-      }
-
-      const data = response.data;
-
-      const booksArray = data.items.map((book: any) => ({
-        title: book.volumeInfo.title,
-        author: book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown',
-        rating: book.volumeInfo.maturityRating,
-        description: book.volumeInfo.description || 'No description available',
-        reviews: book.volumeInfo.reviewsCount || 0,
-        imageUrl: book.volumeInfo.imageLinks
-          ? book.volumeInfo.imageLinks.thumbnail
-          : 'No image available',
-      }));
-
-      console.log(booksArray);
-    } catch (error) {
-      // console.error('Error:', error.message);
+    const fullUrl = `${this.apiUrl}/${id}?${queryParams.toString()}`;
+    const response = await fetch(fullUrl);
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.statusText}`);
     }
+
+    const data = await response.json();
+    const book: Book = bookResponseMapper(data);
+    return book;
   }
 }
