@@ -1,6 +1,6 @@
 # Book-portal
 
-A simple book app built with Next.js, TypeScript and Tailwind CSS. The progect uses **Google Books Api**.
+A simple book app built with Next.js, TypeScript and Tailwind CSS. The progect uses **[Google Books Api](https://developers.google.com/books/docs/v1/using?hl=ru)**.
 
 ## Features
 - Select a book from the list
@@ -84,6 +84,3 @@ yarn start
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-if u want install from lock file 
-yarn install —frozen-lockfile
