@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-neutral-900`}>
+      <body className={`${inter.className} bg-neutral-900 h-[98vh]`}>
         <div className="border-neutral-600 border rounded-xl  max-w-[1120px] h-[95vh] mx-auto mt-5">
           {children}
         </div>

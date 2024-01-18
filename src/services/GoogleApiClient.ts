@@ -13,6 +13,7 @@ export default class GoogleApiClient {
     const queryParams = new URLSearchParams({
       q: "a",
       maxResults: "40",
+      hl: 'en',
       key: this.apiKey,
     });
 

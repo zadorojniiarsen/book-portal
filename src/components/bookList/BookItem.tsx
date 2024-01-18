@@ -22,13 +22,12 @@ const BookItem: FC<Props> = ({
     }}
   >
     <li className="w-[190px]">
-      <div className="relative mb-2">
+      <div className="relative w-[190px] h-[300px] mb-2 rounded-xl before:ease overflow-hidden shadow-xl transition-all before:absolute before:right-0 before:top-0 before:h-[300px] before:w-[100px] before:translate-x-[190px] before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-white hover:before:-translate-x-[300px]">
         <img
-          className="rounded-xl transition-transform transform hover:scale-150  w-[190px] h-[300px] object-cover"
+          className="rounded-xl w-[190px] h-[300px]"
           src={imageUrl}
           alt={title}
         />
-        <div className="absolute inset-0 bg-purple-500 transition-opacity opacity-0 hover:opacity-30"></div>
         <div className="absolute top-4 right-4">
           {viewed ? <VIEWED_SVG /> : <UNVIEWED_SVG />}
         </div>
