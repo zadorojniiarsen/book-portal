@@ -4,12 +4,8 @@ interface Review {
   age: number;
 }
 
-interface BookMinimal {
+interface Book {
   id: string;
-  viewed: boolean;
-}
-
-interface Book extends BookMinimal {
   title: string;
   author: string;
   rating: string;
@@ -18,4 +14,5 @@ interface Book extends BookMinimal {
   imageUrl: any;
   publishedDate: string;
   pageCount: string;
+  viewed: boolean;
 }

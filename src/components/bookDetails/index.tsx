@@ -13,7 +13,7 @@ export default function BookDetails({
       <Header />
 
       <div className="flex p-[40px]">
-        <div className="mx-[40px]">
+        <div className="px-[40px]">
           <img
             className="w-[280px] rounded-xl mb-[20px] "
             src={imageUrl}
@@ -24,7 +24,7 @@ export default function BookDetails({
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 w-[640px] h-[500px] overflow-y-auto">
+        <div className="flex flex-col gap-4 w-[640px] h-[650px] overflow-y-auto">
           <div className="flex gap-3 cursor-default">
             <b className="font-semibold">Title:</b> <p>{title}</p>
           </div>

@@ -59,26 +59,21 @@ const BookList: FC = () => {
       const viewedState = localStorage.getItem("viewed-state");
 
       if (!viewedState) {
-        const defaultData = books.map((b) => ({
-          viewed: b.viewed,
-          id: b.id,
-        }));
+        const defaultData = books.filter(b => b.viewed).map((b) => b.id);
 
         localStorage.setItem("viewed-state", JSON.stringify(defaultData));
         return;
       }
 
-      const parsedViewedState: BookMinimal[] = JSON.parse(viewedState);
+      const parsedViewedState: string[] = JSON.parse(viewedState);
 
       const mergedState = books.map((book) => ({
         ...book,
-        viewed:
-          parsedViewedState.find((storageItem) => storageItem.id === book.id)
-            ?.viewed ?? false,
+        viewed: parsedViewedState.includes(book.id),
       }));
 
       setBooksState(sortBooksByOption(mergedState, sorting));
-
+      setLoading(false);
     })();
   }, []);
 
@@ -93,7 +88,7 @@ const BookList: FC = () => {
           <SortingComponent value={sorting} setValue={sortValues} />
         </div>
 
-        <ul className="flex flex-wrap gap-[24px] h-[70vh] px-[32px] overflow-y-auto">
+        <ul className="flex flex-wrap justify-center gap-[24px] h-[70vh] px-[32px] overflow-y-auto">
           {booksState.map((book) => (
             <BookItem key={book.id} {...book} setViewed={setViewed} />
           ))}

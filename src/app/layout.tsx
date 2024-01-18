@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full overflow-hidden">
       <body className={`${inter.className} bg-neutral-900`}>
-        <div className="border-neutral-600 border rounded-xl  max-w-[1120px] h-[96vh] mx-auto mt-5">
+        <div className="lg:border lg:border-neutral-600 rounded-xl max-w-[1120px] h-[96vh] mx-auto mt-5">
           {children}
         </div>
       </body>
