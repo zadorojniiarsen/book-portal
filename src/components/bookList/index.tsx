@@ -22,8 +22,10 @@ const BookList: FC = () => {
     setLoading(true);
 
     const viewedState = localStorage.getItem("viewed-state") ?? "";
-    const parsedViewedState: string[] = JSON.parse(viewedState);
-    const updatedArray = viewedState ? [...parsedViewedState, id] : [];
+
+    const parsedViewedIds: string[] = JSON.parse(viewedState);
+    const updatedArray = viewedState ? [...parsedViewedIds, id] : [];
+
     localStorage.setItem("viewed-state", JSON.stringify(updatedArray));
   };
 
@@ -59,7 +61,7 @@ const BookList: FC = () => {
     <>
       <div className="mb-2">
         <div className="flex flex-col gap-5 sm:flex-row sm:gap-0 justify-between md:mx-[32px] px-[12px] py-[24px] items-center cursor-default">
-          {booksState.length ? <h2>{booksState.length} Books</h2> : <div></div>}
+          <h2>{`${booksState.length ? `${booksState.length} Books` : ""}`}</h2>
 
           <SortingComponent value={sorting} setValue={sortValues} />
         </div>

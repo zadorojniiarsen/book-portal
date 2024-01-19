@@ -18,12 +18,14 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+}
+
+svg path { 
+  fill: rgb(236, 230, 230);
+}
+
+svg:hover path { 
+  fill: white;
 }
 
 /* width */
