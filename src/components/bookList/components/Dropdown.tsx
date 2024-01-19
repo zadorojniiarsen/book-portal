@@ -1,6 +1,6 @@
 import { DROPDOWN_ARROW_SVG } from "@/svg";
 import { SortOptions, SortStrategy } from "@/types/SortValue";
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 
 interface Props {
   value: SortOptions;
@@ -16,11 +16,34 @@ const getKeyByValue = (
 
 const Dropdown: FC<Props> = ({ value, setValue }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const dropdownRef = useRef(null);
   const strategies = Object.values(SortStrategy);
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !(dropdownRef.current as unknown as HTMLElement).contains(
+        event.target as Node
+      )
+    ) {
+      setIsExpanded(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative" onClick={() => setIsExpanded(!isExpanded)}>
-      <div className="flex border-white border rounded-lg w-[135px] py-2 pl-3 pr-2 justify-between cursor-pointer">
+    <div className="relative" ref={dropdownRef} onClick={() => setIsExpanded(!isExpanded)}>
+      <div
+        className={`flex transition-all duration-600 border-neutral-600 hover:border-white border rounded-lg w-[135px] py-2 pl-3 pr-2 justify-between cursor-pointer ${
+          isExpanded && "border-white"
+        }`}
+      >
         <div>{getKeyByValue(value.sortBy)}</div>
         <div className={`${isExpanded && "rotate-180"}`}>
           <DROPDOWN_ARROW_SVG />

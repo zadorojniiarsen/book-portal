@@ -12,7 +12,7 @@ const SortingComponent: FC<Props> = ({ value, setValue }) => {
   return (
     <div className="flex w-max gap-3 items-center">
       <div
-        className="cursor-pointer"
+        className={`cursor-pointer transition-all duration-300 ${value.isAscending ? 'rotate-180' : ''}`}
         onClick={() => setValue({ ...value, isAscending: !value.isAscending })}
       >
         <SORT_ARROWS_SVG />

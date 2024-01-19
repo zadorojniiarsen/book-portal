@@ -15,22 +15,22 @@ export default function BookDetails({
             alt={title}
           />
           <div className="flex gap-3 cursor-default ml-3">
-            <b className="font-semibold">Count of pages:</b> <p>{pageCount}</p>
+            <b className="font-semibold">Count of pages:</b> <p className="transition-all duration-300 hover:opacity-80">{pageCount}</p>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 w-[640px] h-[650px] overflow-y-auto px-[20px]">
           <div className="flex gap-3 cursor-default">
-            <b className="font-semibold">Title:</b> <p>{title}</p>
+            <b className="font-semibold">Title:</b> <p className="transition-all duration-300 hover:opacity-80">{title}</p>
           </div>
           <div className="flex gap-3 cursor-default">
-            <b className="font-semibold">Author:</b> <p>{author}</p>
+            <b className="font-semibold">Author:</b> <p className="transition-all duration-300 hover:opacity-80">{author}</p>
           </div>
           <div className="flex gap-3 cursor-default">
-            <b className="font-semibold">Rating:</b> <p>{rating}</p>
+            <b className="font-semibold">Rating:</b> <p className="transition-all duration-300 hover:opacity-80">{rating}</p>
           </div>
           <div className="flex gap-3 cursor-default">
-            <b className="font-semibold">Description:</b> <p>{description}</p>
+            <b className="font-semibold">Description:</b> <p className="transition-all duration-300 hover:opacity-80">{description}</p>
           </div>
         </div>
       </div>

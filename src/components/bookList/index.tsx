@@ -4,7 +4,7 @@ import GoogleApiClient from "@/services/GoogleApiClient";
 import { defaultSortValues, sortBooksByOption } from "@/utils/bookListUtils";
 import SortingComponent from "./components/SortingComponent";
 import Loading from "./components/Loading";
-import BooksSceleton from "./components/sceletons/BooksSceleton";
+import BooksSceleton from "./components/BooksSceleton";
 
 const BookItem = lazy(() => import("./components/BookItem"));
 
@@ -58,7 +58,7 @@ const BookList: FC = () => {
   return (
     <>
       <div className="mb-2">
-        <div className="flex flex-col gap-5 sm:flex-row sm:gap-0 justify-between md:mx-[32px] px-[12px] py-[24px] items-center">
+        <div className="flex flex-col gap-5 sm:flex-row sm:gap-0 justify-between md:mx-[32px] px-[12px] py-[24px] items-center cursor-default">
           {booksState.length ? <h2>{booksState.length} Books</h2> : <div></div>}
 
           <SortingComponent value={sorting} setValue={sortValues} />
