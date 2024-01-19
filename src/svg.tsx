@@ -105,7 +105,7 @@ export const BACK_ARROW_SVG: FC = () => (
   </svg>
 );
 
-export const DROPDOWN_ARROW_SVG = () => (
+export const DROPDOWN_ARROW_SVG: FC = () => (
   <svg
     width="24"
     height="24"

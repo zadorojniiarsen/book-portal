@@ -1,11 +1,12 @@
-import { FC, useEffect, useState } from "react";
+import { FC, Suspense, lazy, useEffect, useState } from "react";
 import { SortOptions } from "@/types/SortValue";
 import GoogleApiClient from "@/services/GoogleApiClient";
 import { defaultSortValues, sortBooksByOption } from "@/utils/bookListUtils";
 import SortingComponent from "./components/SortingComponent";
-import BookItem from "./components/BookItem";
 import Loading from "./components/Loading";
 import BooksSceleton from "./components/sceletons/BooksSceleton";
+
+const BookItem = lazy(() => import("./components/BookItem"));
 
 const BookList: FC = () => {
   const [booksState, setBooksState] = useState<Book[]>([]);
@@ -58,16 +59,18 @@ const BookList: FC = () => {
     <>
       <div className="mb-2">
         <div className="flex flex-col gap-5 sm:flex-row sm:gap-0 justify-between md:mx-[32px] px-[12px] py-[24px] items-center">
-          <h2>{booksState.length} Books</h2>
+          {booksState.length ? <h2>{booksState.length} Books</h2> : <div></div>}
 
           <SortingComponent value={sorting} setValue={sortValues} />
         </div>
 
         <ul className="flex flex-wrap justify-center gap-[24px] h-[70vh] px-[12px] mx-[20px] overflow-y-auto">
           {booksState.length ? (
-            booksState.map((book) => (
-              <BookItem key={book.id} {...book} setViewed={setViewed} />
-            ))
+            <Suspense fallback={<BooksSceleton />}>
+              {booksState.map((book) => (
+                <BookItem key={book.id} {...book} setViewed={setViewed} />
+              ))}
+            </Suspense>
           ) : (
             <BooksSceleton />
           )}
