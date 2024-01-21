@@ -4,8 +4,8 @@
 
 const nextConfig = {
   env: {
-    API_URL: "https://www.googleapis.com/books/v1/volumes",
-    API_KEY: "AIzaSyDMFTJ3cy5ELg7KAvSY_ZwOUni5GgxQc-8",
+    API_KEY: process.env.REACT_APP_API_KEY,
+    API_URL: process.env.REACT_APP_API_URL,
   },
 };
 

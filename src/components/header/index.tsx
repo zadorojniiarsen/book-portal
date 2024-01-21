@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
-import { BACK_ARROW_SVG } from "@/svg";
+import { BACK_ARROW_SVG } from "@/icons/backArrowSvg";
 ("use-client");
 
 type Props = {

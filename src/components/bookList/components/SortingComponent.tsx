@@ -1,7 +1,7 @@
-import { SORT_ARROWS_SVG } from "@/svg";
 import { SortOptions } from "@/types/SortValue";
 import { FC } from "react";
 import Dropdown from "./Dropdown";
+import { SORT_ARROWS_SVG } from "@/icons/sortArrowsSvg";
 
 interface Props {
   value: SortOptions;
@@ -14,6 +14,7 @@ const SortingComponent: FC<Props> = ({ value, setValue }) => {
       <div
         className={`cursor-pointer transition-all duration-300 ${value.isAscending ? 'rotate-180' : ''}`}
         onClick={() => setValue({ ...value, isAscending: !value.isAscending })}
+        title={value.isAscending ? 'Ascending' : 'Descending'}
       >
         <SORT_ARROWS_SVG />
       </div>

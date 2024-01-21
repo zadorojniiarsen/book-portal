@@ -1,4 +1,4 @@
-import { DROPDOWN_ARROW_SVG } from "@/svg";
+import { DROPDOWN_ARROW_SVG } from "@/icons/dropdownArrowSvg";
 import { SortOptions, SortStrategy } from "@/types/SortValue";
 import { FC, useEffect, useRef, useState } from "react";
 
@@ -45,7 +45,7 @@ const Dropdown: FC<Props> = ({ value, setValue }) => {
         }`}
       >
         <div>{getKeyByValue(value.sortBy)}</div>
-        <div className={`${isExpanded && "rotate-180"}`}>
+        <div className={`transition-all duration-300 ${isExpanded && "rotate-180"} `}>
           <DROPDOWN_ARROW_SVG />
         </div>
       </div>

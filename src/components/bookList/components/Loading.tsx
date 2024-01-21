@@ -1,4 +1,4 @@
-import { LOADING_SVG } from "@/svg";
+import { LOADING_SVG } from "@/icons/loadingSvg";
 import { FC } from "react";
 
 const Loading: FC = () => (
