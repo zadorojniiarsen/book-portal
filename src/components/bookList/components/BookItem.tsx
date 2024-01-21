@@ -17,6 +17,7 @@ const BookItem: FC<Props> = ({
   setViewed,
 }) => (
   <Link
+    data-testid="page-link"
     href={`/book/${id}`}
     onClick={() => {
       setViewed(id);
@@ -25,6 +26,7 @@ const BookItem: FC<Props> = ({
     <li className="w-[190px]">
       <div className="relative w-[190px] h-[240px] mb-2 rounded-xl before:ease overflow-hidden shadow-xl hover:before:duration-300 transition-all before:absolute before:right-[-20px] before:top-0 before:h-[300px] before:w-[200px] before:translate-x-[190px] before:bg-white before:opacity-10 hover:shadow-white hover:before:-translate-x-[240px]">
         <img
+          data-testid="image"
           className="rounded-xl w-full h-full"
           src={imageUrl}
           alt={title}

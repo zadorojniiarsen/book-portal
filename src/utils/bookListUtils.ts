@@ -9,10 +9,10 @@ export const sorters: Record<SortStrategy, SortFunction> = {
     Number(a) - Number(b)
 };
 
-export const defaultSortValues: SortOptions = {
+export const defaultSortValues: SortOptions = Object.freeze({
   sortBy: SortStrategy.Name,
   isAscending: true,
-};
+});
 
 export const sortBooksByOption = (books: Book[], option: SortOptions): Book[] => {
   return books.toSorted((a: Book, b: Book): number => {

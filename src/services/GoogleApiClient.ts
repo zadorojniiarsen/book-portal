@@ -9,7 +9,7 @@ export default class GoogleApiClient {
     private readonly apiUrl: string = process.env.API_URL ?? ""
   ) {}
 
-  public async searchBooks(): Promise<Book[]> {
+  public async fetchBooks(): Promise<Book[]> {
     const queryParams = new URLSearchParams({
       q: "a",
       maxResults: "40",
@@ -33,7 +33,6 @@ export default class GoogleApiClient {
   }
 
   public async searchBookById(id: string): Promise<Book> {
-    
     const queryParams = new URLSearchParams({
       key: this.apiKey,
     });

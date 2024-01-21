@@ -33,7 +33,7 @@ const BookList: FC = () => {
     (async () => {
       const apiClient = new GoogleApiClient();
 
-      const books = await apiClient.searchBooks();
+      const books = await apiClient.fetchBooks();
 
       // get viewed state from localStorage
       const viewedState = localStorage.getItem("viewed-state");
