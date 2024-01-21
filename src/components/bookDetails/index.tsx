@@ -5,34 +5,50 @@ export default function BookDetails({
   author,
   rating,
   description,
+  url,
 }: Book) {
   return (
-      <div className="flex flex-col md:flex-row p-[40px] overflow-y-auto">
-        <div className="px-[20px]">
+    <div className="flex flex-col md:flex-row p-[40px] overflow-y-auto">
+        <a className="px-[20px]" href={url}>
           <img
             className="h-[350px] w-[280px] rounded-xl mb-[20px] "
             src={imageUrl}
             alt={title}
           />
           <div className="flex gap-3 cursor-default ml-3">
-            <b className="font-semibold">Count of pages:</b> <p className="transition-all duration-300 hover:opacity-70">{pageCount}</p>
+            <b className="font-semibold">Count of pages:</b>
+            <p className="transition-all duration-300 hover:opacity-70">
+              {pageCount}
+            </p>
           </div>
-        </div>
+        </a>
 
-        <div className="flex flex-col gap-4 w-[640px] h-[650px] overflow-y-auto px-[20px]">
-          <div className="flex gap-3 cursor-default">
-            <b className="font-semibold">Title:</b> <p className="transition-all duration-300 hover:opacity-70">{title}</p>
-          </div>
-          <div className="flex gap-3 cursor-default">
-            <b className="font-semibold">Author:</b> <p className="transition-all duration-300 hover:opacity-70">{author}</p>
-          </div>
-          <div className="flex gap-3 cursor-default">
-            <b className="font-semibold">Rating:</b> <p className="transition-all duration-300 hover:opacity-70">{rating}</p>
-          </div>
-          <div className="flex gap-3 cursor-default">
-            <b className="font-semibold">Description:</b> <p className="transition-all duration-300 hover:opacity-70">{description}</p>
-          </div>
+      <div className="flex flex-col gap-4 w-[640px] h-[650px] overflow-y-auto px-[20px]">
+        <div className="flex gap-3 cursor-default">
+          <b className="font-semibold">Title:</b>
+          <p className="transition-all duration-300 hover:opacity-70">
+            {title}
+          </p>
+        </div>
+        <div className="flex gap-3 cursor-default">
+          <b className="font-semibold">Author:</b>
+          <p className="transition-all duration-300 hover:opacity-70">
+            {author}
+          </p>
+        </div>
+        <div className="flex gap-3 cursor-default">
+          <b className="font-semibold">Rating:</b>
+          <p className="transition-all duration-300 hover:opacity-70">
+            {rating === "NOT_MATURE" && "Not Mature"}
+          </p>
+        </div>
+        <div className="flex gap-3 cursor-default">
+          <b className="font-semibold">Description:</b>
+          <p className="transition-all duration-300 hover:opacity-70">
+            {description}
+          </p>
         </div>
       </div>
+    </div>
   );
 }

@@ -1,8 +1,6 @@
 const processData = (book: any) => ({
   title: book.volumeInfo.title,
-  author: book.volumeInfo.authors
-    ? book.volumeInfo.authors[0]
-    : "Unknown",
+  author: book.volumeInfo.authors ? book.volumeInfo.authors[0] : "Unknown",
   rating: book.volumeInfo.maturityRating,
   publishedDate: book.volumeInfo?.publishedDate?.slice(0, 4),
   description: book.volumeInfo.description || "No description available",
@@ -13,6 +11,7 @@ const processData = (book: any) => ({
   viewed: false,
   id: book.id,
   pageCount: book.volumeInfo.pageCount,
+  url: book.saleInfo.buyLink,
 });
 
 export const bookArrayResponseMapper = (data: any): Book[] =>

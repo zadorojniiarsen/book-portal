@@ -22,9 +22,9 @@ const BookItem: FC<Props> = ({
     }}
   >
     <li className="w-[190px]">
-      <div className="relative w-[190px] h-[240px] mb-2 rounded-xl before:ease overflow-hidden shadow-lg hover:before:duration-300 transition-all before:absolute before:right-[-20px] before:top-0 before:h-[300px] before:w-[200px] before:translate-x-[190px] before:rotate-6 before:bg-white before:opacity-10 hover:shadow-white hover:before:-translate-x-[240px]">
+      <div className="relative w-[190px] h-[240px] mb-2 rounded-xl before:ease overflow-hidden shadow-lg hover:before:duration-300 transition-all before:absolute before:right-[-20px] before:top-0 before:h-[300px] before:w-[200px] before:translate-x-[190px] before:bg-white before:opacity-10 hover:shadow-white hover:before:-translate-x-[240px]">
         <img
-          className="rounded-xl w-[190px] h-[240px]"
+          className="rounded-xl w-full h-full"
           src={imageUrl}
           alt={title}
         />
@@ -37,8 +37,8 @@ const BookItem: FC<Props> = ({
         <h3 className="font-semibold break-words line-clamp-3">{title}</h3>
 
         <div className="absolute bottom-0">
-          <p>{author}</p>
-          <p>{publishedDate}</p>
+          <p className="line-clamp-1" title={author}>{author}</p>
+          <p>{publishedDate ?? 'Unknown Year'}</p>
         </div>
       </div>
     </li>

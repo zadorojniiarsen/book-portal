@@ -1,7 +1,7 @@
 import {
   bookArrayResponseMapper,
   bookResponseMapper,
-} from "./bookResponseMapper";
+} from "../utils/bookResponseMapper";
 
 export default class GoogleApiClient {
   constructor(
