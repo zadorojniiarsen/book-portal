@@ -1,17 +1,19 @@
-import { FC, Suspense, lazy, useEffect, useState } from "react";
+import { FC, Suspense, lazy, useState } from "react";
 import { SortOptions } from "@/types/SortValue";
-import GoogleApiClient from "@/services/GoogleApiClient";
 import { defaultSortValues, sortBooksByOption } from "@/utils/bookListUtils";
 import SortingComponent from "./components/SortingComponent";
 import Loading from "./components/Loading";
 import BooksSceleton from "./components/BooksSceleton";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import useBooks from "@/hooks/useBooks";
 
 const BookItem = lazy(() => import("./components/BookItem"));
 
 const BookList: FC = () => {
-  const [booksState, setBooksState] = useState<Book[]>([]);
   const [sorting, setSorting] = useState<SortOptions>(defaultSortValues);
   const [loading, setLoading] = useState(true);
+  const [viewedState, setViewedState] = useLocalStorage("viewed-state");
+  const { booksState, setBooksState } = useBooks(sorting, setLoading)
 
   const sortValues = (value: SortOptions) => {
     setSorting(value);
@@ -20,42 +22,9 @@ const BookList: FC = () => {
 
   const setViewed = (id: string) => {
     setLoading(true);
-
-    const viewedState = localStorage.getItem("viewed-state") ?? "";
-
-    const parsedViewedIds: string[] = JSON.parse(viewedState);
-    const updatedArray = viewedState ? [...parsedViewedIds, id] : [];
-
-    localStorage.setItem("viewed-state", JSON.stringify(updatedArray));
+    const updatedArray = viewedState ? [...viewedState, id] : [];
+    setViewedState(updatedArray);
   };
-
-  useEffect(() => {
-    (async () => {
-      const apiClient = new GoogleApiClient();
-
-      const books = await apiClient.fetchBooks();
-
-      // get viewed state from localStorage
-      const viewedState = localStorage.getItem("viewed-state");
-
-      if (!viewedState) {
-        const defaultData = books.filter((b) => b.viewed).map((b) => b.id);
-
-        localStorage.setItem("viewed-state", JSON.stringify(defaultData));
-        return;
-      }
-
-      const parsedViewedState: string[] = JSON.parse(viewedState);
-
-      const mergedState = books.map((book) => ({
-        ...book,
-        viewed: parsedViewedState.includes(book.id),
-      }));
-
-      setBooksState(sortBooksByOption(mergedState, sorting));
-      setLoading(false);
-    })();
-  }, []);
 
   return (
     <>
